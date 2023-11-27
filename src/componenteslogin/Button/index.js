@@ -2,9 +2,9 @@ import React from "react";
 
 const Button = ({ Type, text, onClick }) => {
   return (
-    <Button ClassName="" type={Type} onClick={onClick}>
+    <button ClassName="" type={Type} onClick={onClick}>
       {text}
-    </Button>
+    </button>
   );
 };
 export default Button;
