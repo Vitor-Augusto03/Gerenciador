@@ -19,7 +19,7 @@ const Signin = () => {
       setError("Preencha todos os campos");
       return;
     }
-    const res = signin (email, senha);
+    const res = signin(email, senha);
 
     if (res) {
       setError(res);
@@ -53,23 +53,25 @@ const Signin = () => {
             type="email"
             value={email}
             onChange={(e) => [setEmail(e.target.value), setError("")]}
+            placeholder="Ex: task@gmail.com" 
           />
           <p className="text-base text-left text-slate-50"> Senha</p>
           <Input
             type="password"
             value={senha}
             onChange={(e) => [setSenha(e.target.value), setError("")]}
+            placeholder="task12345"
           />
+          <label>{error}</label>
+          <Button text="Entrar" onClick={handleLogin} />
+          <label>
+            Não tem uma conta?
+            <strong>
+              <Link to="/signup">&nbsp; Registre-se</Link>
+            </strong>
+          </label>
         </div>
       </section>
-      <label>{error}</label>
-      <Button text="Entrar" onClick={handleLogin} />
-      <label>
-        Não tem uma conta?
-        <strong>
-          <Link to="/signup">&nbsp; Registre-se</Link>
-        </strong>
-      </label>
     </body>
   );
 };
