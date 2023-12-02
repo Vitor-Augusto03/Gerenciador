@@ -31,8 +31,8 @@ const Signin = () => {
   return (
     <body className="bg-gradient-to-b from-blue-950 to-slate-900 h-screen">
       {" "}
-      <div className="text-center font-extrabold text-3xl py-3   text-white">
-        <label>Taks Manager</label>
+      <div className="text-center pt-11 ">
+        <label className="font-extrabold text-transparent text-5xl bg-clip-text bg-gradient-to-r from-sky-400 to-blue-600 text-center">Taks Manager</label>
       </div>
       <section
         className="py-56 px-8 text-center flex items-stretch mx-auto"
@@ -46,28 +46,28 @@ const Signin = () => {
             className=" hover:animate-[spin_4s_linear_infinite] cursor-pointer "
           />
         </div>
-        <div className="bg-slate-900  rounded-r px-10 grow flex flex-col justify-center shadow-lg shadow-slate text-slate-50 font-bold pr-16">
+        <div className="bg-slate-900  rounded-r px-10 grow flex flex-col justify-center shadow-lg shadow-slate text-slate-50 font-bold pr-16 py-2">
           <h1 className="text-xl font-bold duration-500">Acesse a sua conta</h1>
           <p className="pt-10 text-base text-left text-slate-50">Email</p>
           <Input
             type="email"
             value={email}
             onChange={(e) => [setEmail(e.target.value), setError("")]}
-            placeholder="Ex: task@gmail.com" 
+            
           />
           <p className="text-base text-left text-slate-50"> Senha</p>
+        
           <Input
             type="password"
             value={senha}
-            onChange={(e) => [setSenha(e.target.value), setError("")]}
-            placeholder="task12345"
-          />
+            onChange={(e) => [setSenha(e.target.value), setError("")]}/>
+          
           <label>{error}</label>
           <Button text="Entrar" onClick={handleLogin} />
           <label>
             Não tem uma conta?
             <strong>
-              <Link to="/signup">&nbsp; Registre-se</Link>
+              <Link className="hover:text-sky-400" to="/signup">&nbsp; Registre-se</Link>
             </strong>
           </label>
         </div>

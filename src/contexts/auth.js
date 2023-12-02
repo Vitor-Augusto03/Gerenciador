@@ -33,7 +33,7 @@ export const AuthProvider = ({ children }) => {
         return "E-mail ou senha incorretos";
       }
     } else {
-      return alert("Usuário não cadastrado"); 
+      return ("Usuário não cadastrado"); 
     }
   };
 
