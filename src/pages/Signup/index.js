@@ -17,11 +17,11 @@ const Signup = () =>{
 
     const handleSignup  = () => {
         if (!email | !emailConf | !senha) {
-         setError("Preencha todos os campos");
+         setError (<p className="msg-error">Preencha todos os campos</p>);
             
             return;
         } else if (email !== emailConf) {
-            setError("Os e-mails não são iguais");
+            setError(<p className="msg-error">Os e-mails não são iguais</p>);
             
             return;
         }
@@ -41,7 +41,7 @@ const Signup = () =>{
      return (
         <body className="text-white  bg-gradient-to-b from-blue-950 to-slate-900 h-screen w-screen">
           {" "}
-         <div className="text-center py-11">
+         <div className="text-center py-5 shadow-xl">
             <label className="font-extrabold text-transparent text-5xl bg-clip-text bg-gradient-to-r from-sky-400 to-blue-600  ">Taks Manager</label>
           </div>
           <section

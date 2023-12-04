@@ -16,7 +16,7 @@ const Signin = () => {
 
   const handleLogin = () => {
     if (email & senha) {
-      setError("Preencha todos os campos");
+      setError(<p className="msg-error">"Preencha todos os campos"</p>);
       return;
     }
     const res = signin(email, senha);
@@ -31,8 +31,8 @@ const Signin = () => {
   return (
     <body className="bg-gradient-to-b from-blue-950 to-slate-900 h-screen">
       {" "}
-      <div className="text-center pt-11 ">
-        <label className="font-extrabold text-transparent text-5xl bg-clip-text bg-gradient-to-r from-sky-400 to-blue-600 text-center">Taks Manager</label>
+      <div className="text-center py-5 shadow-xl">
+        <label className="font-extrabold text-transparent text-5xl bg-clip-text bg-gradient-to-r from-sky-400 to-blue-600 text-center ">Taks Manager</label>
       </div>
       <section
         className="py-56 px-8 text-center flex items-stretch mx-auto"
