@@ -32,7 +32,7 @@ const Signin = () => {
     <body className="bg-gradient-to-b from-blue-950 to-slate-900 h-screen">
       {" "}
       <div className="text-center py-5 shadow-xl">
-        <label className="font-extrabold text-transparent text-5xl bg-clip-text bg-gradient-to-r from-sky-400 to-blue-600 text-center ">Taks Manager</label>
+        <label className="font-extrabold text-transparent text-5xl bg-clip-text bg-gradient-to-r from-sky-400 to-blue-600 text-center ">TaksManager</label>
       </div>
       <section
         className="py-56 px-8 text-center flex items-stretch mx-auto"
