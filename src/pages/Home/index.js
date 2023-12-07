@@ -25,10 +25,15 @@ const Home = ({User}) => {
         </div>
 
 
-        <div className="text-center  w-screen bg-[#081A51] py-10 shadow-lg h-screen ">
+        <div className="text-center  w-screen bg-[#081A51] py-10 shadow-lg h-screen pl-20">
           <span className="text-white">Olá, {User} </span>
+          <div className="shadow-lg">
           <label className=" font-extrabold  text-transparent text-5xl bg-clip-text bg-gradient-to-r from-sky-400 to-blue-600 text-center">TaskManager</label>
-          <section className=" shadow-2xl shadow-black border-2 border-sky-600 mt-40 m-[720px] pt-60 pb-60 rounded ">
+          </div>
+          <section
+            className="mx-auto mt-20 shadow-2xl shadow-black border-2 border-sky-600 rounded text-white"
+            style={{ maxWidth: 800 }}
+          >
             ola         
           </section>
         </div>

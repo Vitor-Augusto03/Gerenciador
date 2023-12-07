@@ -38,7 +38,7 @@ const Signin = () => {
         className="py-56 px-8 text-center flex items-stretch mx-auto"
         style={{ maxWidth: 700 }}
       >
-        <div className="bg-blue-900 p-10 rounded-l">
+        <div className="bg-blue-900 p-10 rounded-l hidden md:block">
           <img
             src={Logo}
             width={500}

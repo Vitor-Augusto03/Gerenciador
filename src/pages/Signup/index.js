@@ -29,15 +29,26 @@ const Signup = () =>{
             return;
         }
 
-        const res = signup(email, senha);
 
-        if (res) {
-            setError(res);
-            return;
-        }
+        fetch('http://localhost:3001/user', {
+          body: {
+            nome: '...',
+            email: '...'
+          },
+        }).then(() => {
+          const res = signup(email, senha);
 
-        alert("Usuário cadastro com sucesso!");
-        navigate("/");
+          if (res) {
+              setError(res);
+              return;
+          }
+
+          alert("Usuário cadastro com sucesso!");
+          navigate("/");
+        }).catch((err) => {
+          setError(err);
+          return;
+        });
     };
 
 
@@ -84,7 +95,7 @@ const Signup = () =>{
               <label className="mb-5">
                 Já tem  uma conta?
                 <strong>
-                  <Link className="hover:text-sky-400 " to="/signup">&nbsp;Entre</Link>
+                  <Link className="hover:text-sky-400 " to="/signin">&nbsp;Entre</Link>
                 </strong>
               </label>
             </div>
