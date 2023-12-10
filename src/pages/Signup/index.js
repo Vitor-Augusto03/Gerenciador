@@ -28,14 +28,7 @@ const Signup = () =>{
             
             return;
         }
-
-
-        fetch('http://localhost:3001/user', {
-          body: {
-            nome: '...',
-            email: '...'
-          },
-        }).then(() => {
+      
           const res = signup(email, senha);
 
           if (res) {
@@ -45,10 +38,8 @@ const Signup = () =>{
 
           alert("Usuário cadastro com sucesso!");
           navigate("/");
-        }).catch((err) => {
-          setError(err);
-          return;
-        });
+        
+    
     };
 
 
