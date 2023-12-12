@@ -3,7 +3,7 @@ import Input from "../../componenteslogin/Input"
 import Button from "../../componenteslogin/Button";
 import { Link, redirect, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth"
-import User from "../../componenteslogin/inputuser";
+
 
 
 
@@ -11,12 +11,12 @@ const Signup = () =>{
     const [email, setEmail] = useState(""); 
     const [emailConf, setEmailConf] = useState("");
     const [senha, setSenha] = useState("");
-    const [error, setError] = useState("");
-    const [user, setUser] = useState("");
-    const hasUser = Boolean(user)
+    const [error, setError] = useState("")    
     const navigate = useNavigate();
 
     const { signup } = useAuth();
+    
+    
 
     const handleSignup  =() => {
         if (!email | !emailConf | !senha) {
@@ -35,6 +35,8 @@ const Signup = () =>{
               setError(res);
               return;
           }
+
+          navigate.push('/home?username=$username');
 
           alert("Usuário cadastro com sucesso!");
           navigate("/");
@@ -55,12 +57,7 @@ const Signup = () =>{
           >
             <div className="bg-slate-900  rounded px-10 grow flex flex-col justify-center shadow-lg shadow-slate  font-bold  items-center ">
               <h1 className="text-2xl my-10">Crie sua conta</h1>
-               { hasUser || <User  
-              onSubmit={setUser}
-              type="text"
-              placeholder="Insira seu Nome"        
-              />}
-              
+               
               <Input
                 type="email"
                 value={email}
