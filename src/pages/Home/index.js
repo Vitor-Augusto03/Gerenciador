@@ -98,12 +98,14 @@ const Home = ({ User }) => {
         </div>
 
       </div>
-
-      <div className="bg-[#081A51] shadow-lg h-screen ">
-        <div className="shadow-lg py-2 text-center">
-          <label className=" font-extrabold py-10 text-transparent text-5xl bg-clip-text bg-gradient-to-r from-sky-400 to-blue-600 ">TaskManager</label>
+      <div className="bg-[#081A51] shadow-xl text-center">
+      <label className="font-extrabold text-transparent text-5xl bg-clip-text bg-gradient-to-r from-sky-400 to-blue-600 px-[790px] py-2 shadow-lg  ">TaskManager</label>
+      </div>
+      <div className="bg-[#081A51] shadow-lg h-screen flex justify-center items-center">
+        <div className=" text-center">
+          
         </div>
-        <div className="mt-2  w-96 ml-30 shadow-2xl shadow-black border-2 border-sky-600 rounded text-white ">
+        <div className="mt-2 shadow-2xl shadow-black border-2 border-sky-600 rounded text-white ">
           <div className="">
             {task.map((task) => (
               <Task task={task} />
