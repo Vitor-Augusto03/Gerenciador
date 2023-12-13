@@ -36,12 +36,9 @@ const Signup = () =>{
               return;
           }
 
-          navigate.push('/home?username=$username');
-
           alert("Usuário cadastro com sucesso!");
           navigate("/");
-        
-    
+           
     };
 
 

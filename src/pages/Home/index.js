@@ -45,7 +45,7 @@ const Home = ({ User }) => {
 
   return (
 
-    <body >
+    <body className="h-screen">
       <div
 
         className={`${open ? "w-72" : "w-20"} 
@@ -99,13 +99,11 @@ const Home = ({ User }) => {
 
       </div>
 
-      <div className="text-center  w-screen bg-[#081A51] py-10 shadow-lg h-screen pl-20">
-        <div className="shadow-lg">
-          <label className=" font-extrabold  text-transparent text-5xl bg-clip-text bg-gradient-to-r from-sky-400 to-blue-600 text-center">
-            TaskManager
-          </label>
+      <div className="bg-[#081A51] shadow-lg h-screen ">
+        <div className="shadow-lg py-2 text-center">
+          <label className=" font-extrabold py-10 text-transparent text-5xl bg-clip-text bg-gradient-to-r from-sky-400 to-blue-600 ">TaskManager</label>
         </div>
-        <div className="mx-auto pb-20 w-4 mt-20 shadow-2xl shadow-black border-2 border-sky-600   rounded text-white px-72">
+        <div className="mt-2  w-96 ml-30 shadow-2xl shadow-black border-2 border-sky-600 rounded text-white ">
           <div className="">
             {task.map((task) => (
               <Task task={task} />
