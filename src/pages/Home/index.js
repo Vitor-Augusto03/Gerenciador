@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import Task from "../../componentes/task";
 import FormTask from "../../componentes/task/formtask";
+import { text } from "express";
 
 
 const Home = ({ User }) => {
@@ -15,19 +16,19 @@ const Home = ({ User }) => {
   const [task, setTask] = useState([{
     id: 1,
     text: "criar funcionalidade x no sistema",
-    category: "Trabalho",
+    category: "Leve",
     isCompleted: false,
   },
   {
     id: 2,
     text: "Ir pra academia",
-    category: "Pessoal",
+    category: "Importante",
     isCompleted: false,
   },
   {
     id: 3,
     text: "Estudar React",
-    category: "Estudos",
+    category: "Urgente",
     isCompleted: false,
   }]);
 
@@ -42,14 +43,14 @@ const Home = ({ User }) => {
     { title: "Files ", src: "Folder", gap: true },
     { title: "Setting", src: "Setting" },
   ];
-
+  
   return (
 
-    <body className="h-screen">
+    <body className="bg-[#081A51]">
       <div
 
         className={`${open ? "w-72" : "w-20"} 
-          duration-500 bg-[#081A51] h-screen absolute text-white p-5 pt-8 shadow-2xl`}
+          duration-500  absolute text-white p-5 pt-8 shadow-2xl`}
       >
         <img
           src="/control.png"
@@ -98,17 +99,17 @@ const Home = ({ User }) => {
         </div>
 
       </div>
-      <div className="bg-[#081A51] shadow-xl text-center">
-      <label className="font-extrabold text-transparent text-5xl bg-clip-text bg-gradient-to-r from-sky-400 to-blue-600 px-[790px] py-2 shadow-lg  ">TaskManager</label>
+      <div className=" shadow-xl py-2  text-center">
+      <a className="font-extrabold  text-transparent text-5xl bg-clip-text bg-gradient-to-r from-sky-400 to-blue-600  py-2">TaskManager</a>
       </div>
-      <div className="bg-[#081A51] shadow-lg h-screen flex justify-center items-center">
+      <div className="shadow-lg h-screen flex justify-center items-center">
         <div className=" text-center">
           
         </div>
         <div className="mt-2 shadow-2xl shadow-black border-2 border-sky-600 rounded text-white ">
           <div className="">
             {task.map((task) => (
-              <Task task={task} />
+              <Task key={task.id} task={task} />
             ))}
           </div >
           <FormTask />
