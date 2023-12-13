@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import Task from "../../componentes/task";
 import FormTask from "../../componentes/task/formtask";
-import { text } from "express";
+
 
 
 const Home = ({ User }) => {
@@ -46,11 +46,9 @@ const Home = ({ User }) => {
   
   return (
 
-    <body className="bg-[#081A51]">
+    <body className="bg-[#081A51] h-[400vh">
       <div
-
-        className={`${open ? "w-72" : "w-20"} 
-          duration-500  absolute text-white p-5 pt-8 shadow-2xl`}
+        className={`${open ? "w-72" : "w-20"} duration-500  absolute text-white p-5 pt-8 shadow-2xl bg-[#081A51]`}
       >
         <img
           src="/control.png"
@@ -99,8 +97,8 @@ const Home = ({ User }) => {
         </div>
 
       </div>
-      <div className=" shadow-xl py-2  text-center">
-      <a className="font-extrabold  text-transparent text-5xl bg-clip-text bg-gradient-to-r from-sky-400 to-blue-600  py-2">TaskManager</a>
+      <div className=" shadow-xl py-2 text-center">
+      <a className="font-extrabold  text-transparent text-5xl bg-clip-text bg-gradient-to-r from-sky-400 to-blue-600  ">TaskManager</a>
       </div>
       <div className="shadow-lg h-screen flex justify-center items-center">
         <div className=" text-center">
