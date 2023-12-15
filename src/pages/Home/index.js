@@ -3,10 +3,11 @@ import { useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import Task from "../../componentes/task";
 import FormTask from "../../componentes/task/formtask";
+import Search from "../../componentes/search.jsx";
 
 
 
-const Home = (user) => {
+const Home = () => {
   const { signout, } = useAuth();
   const navigate = useNavigate(); 
 
@@ -41,6 +42,8 @@ const Home = (user) => {
     { title: "Setting", src: "Setting" },
   ];
 
+  const [search, setsearch] = useState("")
+
   const addTask = (text, category) => {
     const newTask = 
       [...tasks,
@@ -62,11 +65,12 @@ const Home = (user) => {
    setTasks(filterTask);
   };
 
-  const concluirTask = (id) =>{
+  const concluirTask = (id) => {
     const newTask = [...tasks];
     newTask.map((task) =>
-    task.id === id ? (task.isCompleted = !task.isCompleted) : task    
-    )
+    task.id === id ? (task.isCompleted = !task.isCompleted) : task
+    );
+  setTasks(newTask);
   }
 
   
@@ -110,7 +114,7 @@ const Home = (user) => {
       </div>
       <div className=" shadow-xl py-5 text-center">
       <a className="font-extrabold  text-transparent text-5xl bg-clip-text bg-gradient-to-r from-sky-400 to-blue-600">TaskManager</a>
-      <a>Olá {user}</a>
+      
       </div>
       <div className="shadow-lg h-screen flex justify-center items-center">
         <div className=" text-center">
@@ -118,7 +122,10 @@ const Home = (user) => {
         </div>
         <div className=" py-3 px-4 shadow-2xl shadow-black border-2 border-sky-600 rounded text-white  mx-auto">
           <div className="">
-            {tasks.map((task) => (
+            <Search search={Search} setsearch={setsearch}/>
+            {tasks.filter((task)=> task.text.toLowerCase().includes(search.toLowerCase())
+            )
+            .map((task) => (
               <Task key={task.id} task={task} 
               removeTask={removeTask}
               concluirTask={concluirTask} />
