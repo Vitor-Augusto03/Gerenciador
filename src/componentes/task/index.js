@@ -18,10 +18,11 @@ const Task = ({ task,  removeTask, concluirTask }) => {
 
   return (
     <div
-  className={`bg-slate-800 ml-4 mr-4 rounded items-center py-3 mt-4 justify-between flex ${borderColor}`}
+  className={`bg-slate-800 ml-4 mr-4 rounded items-center py-3 mt-4 justify-between flex ${borderColor} `}
   style={{
     textDecoration: task.isCompleted ? "line-through" : "",
     color: task.isCompleted ? "gray" : "inherit",
+     
   }}
 >
   <div className="ml-4 mr-3 font-bold">

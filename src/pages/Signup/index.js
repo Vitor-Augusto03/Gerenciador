@@ -8,6 +8,7 @@ import useAuth from "../../hooks/useAuth"
 
 
 const Signup = () =>{
+    const [name, setName] = useState('');
     const [email, setEmail] = useState(""); 
     const [emailConf, setEmailConf] = useState("");
     const [senha, setSenha] = useState("");
@@ -30,7 +31,7 @@ const Signup = () =>{
             return;
         }
       
-          const res = signup(email, senha);
+          const res = signup(name, email, senha);
 
           if (res) {
               setError(res);
@@ -55,7 +56,13 @@ const Signup = () =>{
           >
             <div className="bg-slate-900  rounded px-10 grow flex flex-col justify-center shadow-lg shadow-slate  font-bold  items-center ">
               <h1 className="text-2xl my-10">Crie sua conta</h1>
-               
+              <Input
+                type="name"
+                value={name}
+                onChange={(e) => [setName(e.target.value)]}   
+                placeholder="Insira seu nome" 
+              />
+
               <Input
                 type="email"
                 value={email}

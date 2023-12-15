@@ -6,7 +6,7 @@ import useAuth from "../../hooks/useAuth";
 import Logo from "../../logo.svg";
 import { useEffect, useState } from "react";
 
-const Signin = () => {
+const Signin = (name) => {
   const { signin } = useAuth();
   const navigate = useNavigate();
 

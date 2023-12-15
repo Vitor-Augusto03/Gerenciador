@@ -2,14 +2,14 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import Task from "../../componentes/task";
-import FormTask from "../../componentes/task/formtask";
+import FormTask from "../../componentes/formtask/index.js";
 import Search from "../../componentes/search.jsx";
-
+import Filter from "../../componentes/filter/index.js";
 
 
 const Home = () => {
-  const { signout, } = useAuth();
-  const navigate = useNavigate(); 
+  const { signout, user } = useAuth();
+  const navigate = useNavigate();
 
   const [tasks, setTasks] = useState([{
     id: 1,
@@ -42,47 +42,49 @@ const Home = () => {
     { title: "Setting", src: "Setting" },
   ];
 
-  const [search, setsearch] = useState("")
+  const [search, setsearch] = useState("");
+
+  const [filter, setFilter] = useState("All");
 
   const addTask = (text, category) => {
-    const newTask = 
+    const newTask =
       [...tasks,
-        {
-        id:Math.floor(Math.random() * 10000),
+      {
+        id: Math.floor(Math.random() * 10000),
         text,
         category,
         isCompleted: false,
-      }, 
-    ];
+      },
+      ];
 
     setTasks(newTask);
   };
 
   const removeTask = (id) => {
-   const newTask = [...tasks];
-   const filterTask = newTask.filter((task) => task.id !== id ? tasks : null 
-   );
-   setTasks(filterTask);
+    const newTask = [...tasks];
+    const filterTask = newTask.filter((task) => task.id !== id ? tasks : null
+    );
+    setTasks(filterTask);
   };
 
   const concluirTask = (id) => {
     const newTask = [...tasks];
     newTask.map((task) =>
-    task.id === id ? (task.isCompleted = !task.isCompleted) : task
+      task.id === id ? (task.isCompleted = !task.isCompleted) : task
     );
-  setTasks(newTask);
+    setTasks(newTask);
   }
 
-  
+
   return (
     <body className="bg-gradient-to-b from-blue-950 to-slate-900 h-[400vh">
       <div
         className={`${open ? "w-72" : "w-20"} duration-500  absolute text-white p-5 pt-8 shadow-2xl bg-gradient-to-b from-blue-950 to-slate-900  h-screen`}
       ><img src="/control.png"
-          className={`absolute cursor-pointer duration-500 rounded-full top-9 ${open ? "left-[270px]" : "left-[65px]"
-            }
+        className={`absolute cursor-pointer duration-500 rounded-full top-9 ${open ? "left-[270px]" : "left-[65px]"
+          }
           bg-white w-7 border-2  border-[#081A51] ${!open && "rotate-180"}`}
-          onClick={() => setOpen(!open)}
+        onClick={() => setOpen(!open)}
         />
         <div className="flex gap-x-4 items-center">
           <img
@@ -91,7 +93,7 @@ const Home = () => {
             src="/logo.png"
           />
           <h1 className={` font-extrabold text-transparent text-xl bg-clip-text bg-gradient-to-r from-sky-400 to-blue-600 duration-500 ${!open && "scale-0"
-              }`}>TaskManager</h1>
+            }`}>TaskManager</h1>
         </div>
         <div>
           <ul className="pt-6">
@@ -113,23 +115,35 @@ const Home = () => {
         </div>
       </div>
       <div className=" shadow-xl py-5 text-center">
-      <a className="font-extrabold  text-transparent text-5xl bg-clip-text bg-gradient-to-r from-sky-400 to-blue-600">TaskManager</a>
-      
+        <a className="font-extrabold  text-transparent text-5xl bg-clip-text bg-gradient-to-r from-sky-400 to-blue-600">TaskManager</a>
+        <a className="font-extrabold text-lg text-slate-300">Olá {user.name}</a>
+
       </div>
       <div className="shadow-lg h-screen flex justify-center items-center">
         <div className=" text-center">
-          
+
         </div>
         <div className=" py-3 px-4 shadow-2xl shadow-black border-2 border-sky-600 rounded text-white  mx-auto">
-          <div className="">
-            <Search search={Search} setsearch={setsearch}/>
-            {tasks.filter((task)=> task.text.toLowerCase().includes(search.toLowerCase())
-            )
-            .map((task) => (
-              <Task key={task.id} task={task} 
-              removeTask={removeTask}
-              concluirTask={concluirTask} />
-            ))}
+          <Search search={search} setsearch={setsearch} />
+          <Filter filter={filter} setFilter={setFilter} />
+          <div className="overflow-auto" style={{ maxHeight: 300 }}>
+
+            {tasks
+              .filter((task) =>
+                filter === "All"
+                    ? true 
+                    : filter === "Completed"
+                    ? task.isCompleted
+                    : !task.isCompleted
+              )
+
+              .filter((task) => task.text.toLowerCase().includes(search.toLowerCase())
+              )
+              .map((task) => (
+                <Task key={task.id} task={task}
+                  removeTask={removeTask}
+                  concluirTask={concluirTask} />
+              ))}
           </div >
           <FormTask addTask={addTask} />
         </div>
