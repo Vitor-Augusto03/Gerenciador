@@ -5,42 +5,38 @@ import { Link, redirect, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth"
 
 
-
-
 const Signup = () =>{
     const [name, setName] = useState('');
-    const [email, setEmail] = useState(""); 
+    const [email, setEmail] = useState("");
     const [emailConf, setEmailConf] = useState("");
     const [senha, setSenha] = useState("");
-    const [error, setError] = useState(""); 
-    
+    const [error, setError] = useState("");
+
     const navigate = useNavigate();
 
     const { signup } = useAuth();
-    
-    
+
+
 
     const handleSignup  =() => {
         if (!email | !emailConf | !senha) {
          setError (<p className="msg-error">Preencha todos os campos</p>);
-            
+
             return;
         } else if (email !== emailConf) {
             setError(<p className="msg-error">Os e-mails não são iguais</p>);
-            
+
             return;
         }
-      
-          const res = signup(name, email, senha);
 
-          if (res) {
-              setError(res);
-              return;
-          }
-
-          alert("Usuário cadastro com sucesso!");
-          navigate("/");
-           
+        signup(name, email, senha)
+          .then(() => {
+            alert("Usuário cadastro com sucesso!");
+            navigate("/");
+          })
+          .catch((err) => {
+            setError(<p className="msg-error">Erro ao cadastrar usuário</p>);
+          });
     };
 
 
@@ -59,15 +55,15 @@ const Signup = () =>{
               <Input
                 type="name"
                 value={name}
-                onChange={(e) => [setName(e.target.value)]}   
-                placeholder="Insira seu nome" 
+                onChange={(e) => [setName(e.target.value)]}
+                placeholder="Insira seu nome"
               />
 
               <Input
                 type="email"
                 value={email}
-                onChange={(e) => [setEmail(e.target.value), setError("")]}   
-                placeholder="Insira seu Email" 
+                onChange={(e) => [setEmail(e.target.value), setError("")]}
+                placeholder="Insira seu Email"
               />
               <Input
                 type="email"
@@ -75,14 +71,14 @@ const Signup = () =>{
                 onChange={(e) => [setEmailConf(e.target.value), setError("")]}
                 placeholder="Confirme seu Email"
                 />
-    
+
               <Input
                 type="password"
                 value={senha}
                 onChange={(e) => [setSenha(e.target.value), setError("")]}
-                placeholder="Insira sua Senha"              
+                placeholder="Insira sua Senha"
               />
-              
+
               <label>{error}</label>
               <Button   text="Inscreva-se" onClick={handleSignup}/>
               <label className="mb-5">

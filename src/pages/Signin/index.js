@@ -15,17 +15,18 @@ const Signin = (name) => {
   const [error, setError] = useState("");
 
   const handleLogin = () => {
-    if (email & senha) {
-      setError(<p className="msg-error">"Preencha todos os campos"</p>);
+    if (!email || !senha) {
+      setError(<p className="msg-error">Preencha todos os campos</p>);
       return;
     }
-    const res = signin(email, senha);
 
-    if (res) {
-      setError(res);
-      return
-    }
-    navigate("/home");
+    signin(email, senha)
+      .then(() => {
+        navigate('/home');
+      })
+      .catch((err) => {
+        setError(<p className="msg-error">Falha na autenticação</p>);
+      });
   };
 
   return (
@@ -53,15 +54,15 @@ const Signin = (name) => {
             type="email"
             value={email}
             onChange={(e) => [setEmail(e.target.value), setError("")]}
-            
+
           />
           <p className="text-base text-left text-slate-50"> Senha</p>
-        
+
           <Input
             type="password"
             value={senha}
             onChange={(e) => [setSenha(e.target.value), setError("")]}/>
-          
+
           <label>{error}</label>
           <Button text="Entrar" type="submit" onClick={handleLogin} />
           <label>

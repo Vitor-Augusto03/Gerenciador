@@ -1,72 +1,50 @@
 import { createContext, useEffect, useState } from "react";
+import { fetchApi } from '../lib/utils';
 
 export const AuthContext = createContext({});
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState();
+  const [user, setUser] = useState(); // User = { token: string, email: string, nome: string }
 
   useEffect(() => {
-    const userToken = localStorage.getItem("user_token");
-    const usersStorage = localStorage.getItem("users_bd");
+    const user = localStorage.getItem('user');
 
-    if (userToken && usersStorage) {
-      const hasUser = JSON.parse(usersStorage)?.filter(
-        (user) => user.email === JSON.parse(userToken).email
-      );
-
-      if (hasUser) setUser(hasUser[0]);
+    if (user) {
+      setUser(JSON.parse(user));
     }
   }, []);
 
-  const signin = (email, password) => {
-    const usersStorage = JSON.parse(localStorage.getItem("users_bd"));
-
-    const hasUser = usersStorage?.filter((user) => user.email === email);
-
-    if (hasUser?.length) {
-      if (hasUser[0].email === email && hasUser[0].password === password) {
-        const token = Math.random().toString(36).substring(2);
-        localStorage.setItem("user_token", JSON.stringify({ email, token }));
-        setUser({ email, password, name: hasUser[0].name }); // Include name in user object
-        return;
-      } else {
-        return <p className="msg-error">E-mail ou senha incorretos</p>;
-      }
-    } else {
-      return <p className="msg-error">Usuário não cadastrado</p>;
-    }
+  const signin = (email, senha) => {
+    return fetchApi('auth/signin', 'POST', { email, senha })
+      .then((res) => res.json())
+      .then((json) => {
+        localStorage.setItem('user', JSON.stringify(json));
+        setUser(json);
+      });
   };
 
-  const signup = (name, email, password) => {
-    const usersStorage = JSON.parse(localStorage.getItem("users_bd"));
-
-    const hasUser = usersStorage?.filter((user) => user.email === email);
-
-    if (hasUser?.length) {
-      return <p className="msg-error">Já tem uma conta com esse E-mail</p>;
-    }
-
-    let newUser;
-
-    if (usersStorage) {
-      newUser = [...usersStorage, { name, email, password }]; 
-    } else {
-      newUser = [{ name, email, password }];
-    }
-
-    localStorage.setItem("users_bd", JSON.stringify(newUser));
-
-    return;
+  const signup = (nome, email, senha) => {
+    return fetchApi('auth/signup', 'POST', { nome, email, senha })
+      .then((res) => res.json())
+      .then((json) => {
+        localStorage.setItem('user', JSON.stringify(json));
+        setUser(json);
+      });
   };
 
   const signout = () => {
+    localStorage.removeItem('user');
     setUser(null);
-    localStorage.removeItem("user_token");
+  };
+
+  const fetchApiAuth = (url, method, body = undefined) => {
+    const token = user ? user.token : undefined;
+    return fetchApi(url, method, body, token);
   };
 
   return (
     <AuthContext.Provider
-      value={{ user, signed: !!user, signin, signup, signout }}
+      value={{ user, signed: !!user, signin, signup, signout, fetchApiAuth }}
     >
       {children}
     </AuthContext.Provider>
