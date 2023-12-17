@@ -2,7 +2,7 @@ export const BACKEND_URL = 'http://localhost:3001/';
 
 export function fetchApi(
   url,                    // string
-  method,                 // 'GET' | 'POST'
+  method,                 // 'GET' | 'POST' | 'DELETE'
   body = undefined,       // any
   authToken = undefined,  // string
 ) {

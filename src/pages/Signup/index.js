@@ -41,7 +41,7 @@ const Signup = () =>{
 
 
      return (
-        <body className="text-white  bg-gradient-to-b from-blue-950 to-slate-900 h-screen w-screen">
+        <div className="text-white  bg-gradient-to-b from-blue-950 to-slate-900 h-screen w-screen">
           {" "}
          <div className="text-center py-5 shadow-xl">
             <label className="font-extrabold text-transparent text-5xl bg-clip-text bg-gradient-to-r from-sky-400 to-blue-600  ">TaskManager</label>
@@ -89,6 +89,6 @@ const Signup = () =>{
               </label>
             </div>
           </section>
-        </body>)
+        </div>)
 };
 export default Signup;

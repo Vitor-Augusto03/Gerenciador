@@ -2,7 +2,7 @@ import React from "react";
 
 const Task = ({ task,  removeTask, concluirTask }) => {
   const getBorderColor = () => {
-    switch (task.category) {
+    switch (task.categoria) {
       case "Light":
         return "border-b-2 border-green-500 relative ";
       case "Importante":
@@ -13,23 +13,23 @@ const Task = ({ task,  removeTask, concluirTask }) => {
         return "";
     }
   };
-  
+
   const borderColor = getBorderColor();
 
   return (
     <div
   className={`bg-slate-800 ml-4 mr-4 rounded items-center py-3 mt-4 justify-between flex ${borderColor} `}
   style={{
-    textDecoration: task.isCompleted ? "line-through" : "",
-    color: task.isCompleted ? "gray" : "inherit",
-     
+    textDecoration: task.status === 'Concluída' ? "line-through" : "",
+    color: task.status === 'Concluída' ? "gray" : "inherit",
+
   }}
 >
   <div className="ml-4 mr-3 font-bold">
-    <p>{task.text}</p>
+    <p>{task.nome}</p>
     <a className={`text-sm ${borderColor}`}>
-      {task.category}
-      {task.isCompleted && (
+      {task.categoria}
+      {task.status === 'Concluída' && (
         <div className=""></div>
       )}
     </a>
@@ -51,9 +51,8 @@ const Task = ({ task,  removeTask, concluirTask }) => {
 </div>
 
   );
-  
+
 
   };
-  
+
   export default Task;
-  
