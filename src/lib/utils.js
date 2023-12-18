@@ -1,4 +1,5 @@
-export const BACKEND_URL = 'http://localhost:3001/';
+ export const BACKEND_URL = 'http://localhost:3001/'; // SE FOR ACESSAR SÓ DA MESMA MÁQUINA QUE TÁ HOSTEANDO
+//export const BACKEND_URL = 'http://10.10.5.183:3001/';
 
 export function fetchApi(
   url,                    // string

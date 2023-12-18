@@ -6,7 +6,7 @@ import useAuth from "../../hooks/useAuth"
 
 
 const Signup = () =>{
-    const [name, setName] = useState('');
+    const [nome, setName] = useState('');
     const [email, setEmail] = useState("");
     const [emailConf, setEmailConf] = useState("");
     const [senha, setSenha] = useState("");
@@ -29,7 +29,7 @@ const Signup = () =>{
             return;
         }
 
-        signup(name, email, senha)
+        signup(nome, email, senha)
           .then(() => {
             alert("Usuário cadastro com sucesso!");
             navigate("/");
@@ -54,7 +54,7 @@ const Signup = () =>{
               <h1 className="text-2xl my-10">Crie sua conta</h1>
               <Input
                 type="name"
-                value={name}
+                value={nome}
                 onChange={(e) => [setName(e.target.value)]}
                 placeholder="Insira seu nome"
               />

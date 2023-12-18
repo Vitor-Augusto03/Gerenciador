@@ -68,7 +68,7 @@ const Home = () => {
 
 
   return (
-    <div className="bg-gradient-to-b from-blue-950 to-slate-900 h-[400vh">
+    <div className=" bg-gradient-to-b from-blue-950 to-slate-900 h-[400vh">
       <div
         className={`${open ? "w-72" : "w-20"} duration-500  absolute text-white p-5 pt-8 shadow-2xl bg-gradient-to-b from-blue-950 to-slate-900  h-screen`}
       ><img src="/control.png"
@@ -105,11 +105,12 @@ const Home = () => {
           </ul>
         </div>
       </div>
+      <div className="relative">
+      <a className="absolute top-8 right-10  font-extrabold text-2xl text-sky-400 animate-[bounce_2s_ease-in-out] ">Olá, {user.nome}! </a>
+     </div>
       <div className=" shadow-xl py-5 text-center">
-        <a className="font-extrabold  text-transparent text-5xl bg-clip-text bg-gradient-to-r from-sky-400 to-blue-600">TaskManager</a>
-        <a className="font-extrabold text-lg text-slate-300">Olá {user.nome}</a>
-
-      </div>
+        <a className="font-extrabold text-transparent text-5xl bg-clip-text bg-gradient-to-r from-sky-400 to-blue-600">TaskManager</a>
+          </div>
       <div className="shadow-lg h-screen flex justify-center items-center">
         <div className=" text-center">
 
@@ -120,7 +121,10 @@ const Home = () => {
           <div className="overflow-auto" style={{ maxHeight: 300 }}>
 
             {tasks === undefined && (
-              <div>Carregando...</div>
+              <div 
+                className="animate-pulse text-gray-500">
+                Carregando...
+              </div>
             )}
 
             {tasks !== undefined && tasks.filter((task) => {
