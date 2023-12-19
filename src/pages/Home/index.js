@@ -122,7 +122,7 @@ const Home = () => {
 
             {tasks === undefined && (
               <div 
-              className="animate-pulse text-slate-400 text-center text-xl font-bold">
+                className="animate-pulse text-slate-400 text-center text-xl font-bold">
                 Carregando...
               </div>
             )}
