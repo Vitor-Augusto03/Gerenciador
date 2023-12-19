@@ -9,7 +9,7 @@ const Filter = ({ filter, setFilter }) => {
                 <option value="Todas">Todas</option>
                 <option value="Concluída">Concluídas</option>
                 <option value="Incompleta">Incompletas</option>
-
+                <option value="Excluídas">Excluídas</option>
             </select>
         </div>
     )

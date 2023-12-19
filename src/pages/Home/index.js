@@ -122,17 +122,21 @@ const Home = () => {
 
             {tasks === undefined && (
               <div 
-                className="animate-pulse text-gray-500">
+              className="animate-pulse text-slate-400 text-center text-xl font-bold">
                 Carregando...
               </div>
             )}
 
             {tasks !== undefined && tasks.filter((task) => {
+              if (filter === 'Excluídas') {
+                return task.dataExcluida !== null;
+              }
+
               if (filter === 'Todas') {
                 return true;
               }
 
-              return task.status === filter;
+              return task.dataExcluida === null && task.status === filter;
             }).filter((task) => task.nome.toLowerCase().includes(search.toLowerCase()))
               .map((task) => (
                 <Task key={task.id} task={task}
